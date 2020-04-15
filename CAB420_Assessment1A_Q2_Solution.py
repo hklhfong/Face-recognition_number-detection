@@ -1,14 +1,10 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-import re
-import string
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import plot_confusion_matrix
-from sklearn.svm import SVC, NuSVC
+from sklearn.svm import SVC
 from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
-from scipy.stats import norm
 
 
 # reading in the binary data set
@@ -51,10 +47,20 @@ print('KNN')
 cknn = KNeighborsClassifier(n_neighbors=5)
 cknn.fit(X_train, Y_train)
 eval_model_val(cknn, X_train, Y_train, X_val, Y_val)
+
+print('\nKNN with neighbors 10')
+cknn = KNeighborsClassifier(n_neighbors=10)
+cknn.fit(X_train, Y_train)
+eval_model_val(cknn, X_train, Y_train, X_val, Y_val)
 # eval_model(cknn, X_train, Y_train, X_test, Y_test)
 
-print('KNN Distance')
-cknn = KNeighborsClassifier(n_neighbors=5, weights='distance')
+print('\nKNN with neighbors 15')
+cknn = KNeighborsClassifier(n_neighbors=15)
+cknn.fit(X_train, Y_train)
+eval_model_val(cknn, X_train, Y_train, X_val, Y_val)
+
+print('\nKNN Distance with neighbors 10')
+cknn = KNeighborsClassifier(n_neighbors=10, weights='distance')
 cknn.fit(X_train, Y_train)
 eval_model_val(cknn, X_train, Y_train, X_val, Y_val)
 # eval_model(cknn, X_train, Y_train, X_test, Y_test)
@@ -73,22 +79,23 @@ print('SVC')
 svm = SVC()
 svm.fit(X_train, Y_train)
 eval_model_val(svm, X_train, Y_train, X_val, Y_val)
-# eval_model(svm, X_train, Y_train, X_test, Y_test)
 
-print('SVC Balanced')
-svm = SVC(class_weight='balanced')
-svm.fit(X_train, Y_train)
-eval_model_val(svm, X_train, Y_train, X_val, Y_val)
-# eval_model(svm, X_train, Y_train, X_test, Y_test)
-
-print('SVC One Vs One Balanced')
-onevsone_svm = OneVsOneClassifier(SVC(class_weight='balanced'))
+print('SVC One Vs One')
+onevsone_svm = OneVsOneClassifier(SVC())
 onevsone_svm.fit(X_train, Y_train)
 eval_model_val(onevsone_svm, X_train, Y_train, X_val, Y_val)
-# eval_model(onevsone_svm, X_train, Y_train, X_test, Y_test)
 
-print('SVC One Vs All Balanced')
-onevsall_svm = OneVsRestClassifier(SVC(class_weight='balanced'))
+print('SVC One Vs All')
+onevsall_svm = OneVsRestClassifier(SVC())
 onevsall_svm.fit(X_train, Y_train)
 eval_model_val(onevsall_svm, X_train, Y_train, X_val, Y_val)
-# eval_model(onevsall_svm, X_train, Y_train, X_test, Y_test)
+
+#comparison of final two model which is KNN with neighbors 10 and SVC One Vs One
+print('\nKNN with neighbors 10 on testing set')
+cknn = KNeighborsClassifier(n_neighbors=10)
+cknn.fit(X_train, Y_train)
+eval_model(cknn, X_train, Y_train, X_test, Y_test)
+print('SVC One Vs One on testing set')
+onevsone_svm = OneVsOneClassifier(SVC())
+onevsone_svm.fit(X_train, Y_train)
+eval_model(onevsone_svm, X_train, Y_train, X_test, Y_test)
