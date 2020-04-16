@@ -66,7 +66,7 @@ plt.show()
 
 all_variables = data.iloc[1,:]
 
-# fit the model with L1 regularisation Lasso Regression
+# fit the model with L1 regularisation 
 # if the L1_wt param is 1 representing L1 regularisation
 # if L1_wt = 0 representing L2 regularisation
 alpha = 1.0
@@ -170,6 +170,13 @@ ax.set_title('Testing Data')
 ax.legend();
 
 
+for lasso in [lasso_1,lasso_2]:
+    rmse = np.sqrt(mean_squared_error(y_val, lasso.predict(x_val)))
+    print('\nValudation set :{},  RMSE = {}'.format(str(lasso), rmse))
+    rmse = np.sqrt(mean_squared_error(y_test, lasso.predict(x_test)))
+    print('\nTesting set :{},  RMSE = {}'.format(str(lasso), rmse))
+
+
 #train modle with Ridge Regression
 ridge_1 = Ridge(fit_intercept=False, alpha=0.01).fit(X = x_train.to_numpy(), y = y_train.to_numpy())
 ridge_2 = Ridge(fit_intercept=False, alpha=2.5).fit(X = x_train.to_numpy(), y = y_train.to_numpy())
@@ -209,3 +216,10 @@ ax.plot(ridge_3.predict(x_test), label='alpha=10')
 ax.plot(y_test.to_numpy(), label='Actual')
 ax.set_title('Testing Data')
 ax.legend();
+
+for ridge in [ridge_1,ridge_2,ridge_3]:
+    rmse = np.sqrt(mean_squared_error(y_val, ridge.predict(x_val)))
+    print('\nValudation set :{},  RMSE = {}'.format(str(ridge), rmse))
+    rmse = np.sqrt(mean_squared_error(y_test, ridge.predict(x_test)))
+    print('\nTesting set :{},  RMSE = {}'.format(str(ridge), rmse))
+    
