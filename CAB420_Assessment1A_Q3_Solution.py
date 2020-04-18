@@ -32,10 +32,10 @@ tf.keras.backend.clear_session()
 from scipy.io import loadmat
 
 #Load training and test data 
-test = loadmat("/content/drive/My Drive/Colab Notebooks/q3_test.mat")
+test = loadmat(r"C:\Users\user\Downloads\CAB420_Assessment1A_Data\Data\Q3\q3_test")
 test_X = test["test_X"]
 test_Y = test["test_Y"]
-train = loadmat("/content/drive/My Drive/Colab Notebooks/q3_train.mat")
+train = loadmat(r"C:\Users\user\Downloads\CAB420_Assessment1A_Data\Data\Q3\q3_train")
 train_X = train["train_X"]
 train_Y = train["train_Y"]
 
