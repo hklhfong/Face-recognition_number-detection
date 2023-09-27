@@ -1,4 +1,4 @@
-# CAB420_Ass_1A
 
-A assignment include data cleaning,validation,ploting graph using QQplot and Confusion martrix.The mission need to acomplish a face recognition,number detection and for prediting in testing dataset.
-Inside the project,we using different machines for experiment.That involved KNN,SVC and pre trained modual with fine tuning.
+The assignment involves a multifaceted approach, encompassing data cleaning, validation, graph plotting utilizing QQ plots, and the construction of a confusion matrix. The overarching goal is to achieve face recognition and number detection on a testing dataset.
+
+Within the project, various machine learning techniques are employed for experimentation, including K-Nearest Neighbors (KNN), Support Vector Classification (SVC), and the utilization of pre-trained models with fine-tuning.
